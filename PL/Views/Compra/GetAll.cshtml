@@ -1,0 +1,49 @@
+﻿@model ML.Compra
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Todas las compras</h1>
+<hr />
+<div>
+    <a class="btn btn-success" href="@Url.Action("Comprar","Compra")">Nueva compra</a>
+</div>
+<hr />
+<div class="container">
+    @if(Model.Compras != null)
+    {
+        if(Model.Compras.Count > 0)
+        {
+            <table class="table table-dark table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Ingreso</th>
+                        <th>Cambio</th>
+                        <th>Total</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(ML.Compra compra in Model.Compras)
+                    {
+                        <tr>
+                            <td>@compra.Producto.Tipo</td>
+                            <td>@compra.Ingreso</td>
+                            <td>@compra.Cambio</td>
+                            <td>@compra.Total</td>
+                            <th><a class="btn btn-danger"><i class="fa-solid fa-circle-minus"></i></a></th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div role="alert" class="alert alert-warning">
+                No hay compras registradas.
+            </div>
+        }
+    }
+</div>
